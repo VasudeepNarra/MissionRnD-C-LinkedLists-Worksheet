@@ -12,14 +12,49 @@ NOTES:
 */
 
 #include <stdio.h>
-
+#include<malloc.h>
 struct node {
 	int num;
 	struct node *next;
 };
-
-typedef struct node * lptr;
 struct node * removeEveryKthNode(struct node *head, int K) {
+	int i = 1, l = 0;
+	struct node *ptr, *t = NULL;
+	if (K == 0 || K<0 || head == NULL)
+		return NULL;
+	ptr = head;
+	while (ptr != NULL)
+	{
+		l++;
+		ptr = ptr->next;
+	}
+	if (K == 1)
+		return NULL;
+	ptr = head;
+	if (ptr->next == NULL && K == 1)
+	{
+		free(head);
+		return NULL;
+
+	}
+	int j = l / K;
+	int p;
+
+	for (p = 0; p<j; p++)
+	{
+		while (ptr->next != NULL && (K != i))
+		{
+			t = ptr;
+			ptr = ptr->next;
+			i++;
+
+		}
+		t->next = ptr->next;
+		i = 0;
+	}
+	return head;
+
+}	/*
 	if (head == NULL || K <= 1) return NULL;
 	lptr t = head; int flag = 0;
 
@@ -53,4 +88,5 @@ struct node * removeEveryKthNode(struct node *head, int K) {
 		else{}
 	}
 	return head;
-}
+	}
+	*/

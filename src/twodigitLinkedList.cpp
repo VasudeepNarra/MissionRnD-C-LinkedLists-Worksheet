@@ -14,6 +14,7 @@ NOTES: Only Postive Numbers
 
 #include <stdio.h>
 #include <malloc.h>
+#include<stdlib.h>
 
 struct node {
 	int digit1;
@@ -22,5 +23,21 @@ struct node {
 };
 
 int convert_sll_2digit_to_int(struct node *head){
-	return 0;
+
+	int n = 0, i = 0;
+	char a[10];
+	struct node *pt;
+	pt = head;
+	while (pt != NULL)
+	{
+		a[i] = pt->digit1 + '0';
+		i++;
+		a[i] = pt->digit2 + '0';
+		i++;
+		pt = pt->next;
+	}
+	a[i] = '\0';
+	n = atoi(a);
+
+	return n;
 }
